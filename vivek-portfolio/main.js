@@ -196,7 +196,7 @@ portfolioApp.controller('FooterCtrl', ['$scope', '$timeout', function($scope, $t
 }]);
 
 // --- 3. Antigravity/Hover Engines ---
-portfolioApp.directive('antigravityCard', function($timeout) {
+portfolioApp.directive('antigravityCard', ['$timeout', function($timeout) {
   return {
     restrict: 'A',
     link: function(scope, element) {
@@ -235,9 +235,9 @@ portfolioApp.directive('antigravityCard', function($timeout) {
       }, 0);
     }
   };
-});
+}]);
 
-portfolioApp.directive('skillConstellation', function($timeout) {
+portfolioApp.directive('skillConstellation', ['$timeout', function($timeout) {
   return {
     restrict: 'A',
     link: function(scope, element) {
@@ -350,10 +350,10 @@ portfolioApp.directive('skillConstellation', function($timeout) {
       }, 200);
     }
   }
-});
+}]);
 
 // --- 4. Chat Service & Controller ---
-portfolioApp.service('MockLLMService', function($q, $timeout) {
+portfolioApp.service('MockLLMService', ['$q', '$timeout', function($q, $timeout) {
   this.queryCard = function(prompt) {
     const defer = $q.defer();
     const p = prompt.toLowerCase();
@@ -372,7 +372,7 @@ portfolioApp.service('MockLLMService', function($q, $timeout) {
 
     return defer.promise;
   };
-});
+}]);
 
 portfolioApp.controller('ChatCtrl', ['$scope', 'MockLLMService', '$timeout', function($scope, MockLLMService, $timeout) {
   $scope.isChatOpen = false;
